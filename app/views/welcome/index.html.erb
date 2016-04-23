@@ -3,11 +3,5 @@
 	<p>
 	  The time is now: <%= Time.now %>
 	</p>
-	<div class="basic-html-bar-chart">
-	<h4>HTML Bar Chart</h4>
-	</div>
-	<h4>SVG Bar Chart</h4>
-	<svg class="svg-chart"></svg>
-	<h4> Letter Frequency </h4>
-	<svg class="svg-chart vertical-chart"></svg>
+	<%= button_to "Graphs", action: "show" %>
 </body>
