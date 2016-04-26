@@ -11,3 +11,28 @@
   font: 10px sans-serif;
   text-anchor: end;
 }
+
+.toggle-box {
+	border-width: 1px;
+	border-style: solid;
+	border-color: steelblue;
+	&:hover {
+		background-color: steelblue;
+		cursor: pointer;
+	}
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
