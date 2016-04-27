@@ -57,11 +57,11 @@ $ ->
   .attr("width", width)
   .append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-
-  callback = (error,data) ->
-    if error
-      console.log("warning " + error)
-      return
+  circleX = d3.scale
+  circleChart = d3.select(".svg-circles")
+  .attr("height", height)
+  .attr("width", width)
+  buildBarGraph = (data) ->
     dataArray = []
     dataArray.push( [key, value] ) for key, value of data
     x.domain(dataArray.map((key)-> return key[0]))
@@ -104,5 +104,41 @@ $ ->
       .attr("dx", ".35em")
       .attr("x", barWidth / 2)
       .text((d) -> return d.key );
+
+  buildCuteCircles = (data) ->
+    totalLetters = 0
+    aggregateD = 0
+    displayHeight = height/4
+    totalLetters += num for key, num of data
+    translationCalculation = (d, i) ->
+      dBefore = aggregateD
+      aggregateD += ((d.value *1.0)/totalLetters) * 2 * width 
+      if Math.floor(aggregateD/width) > Math.floor(dBefore/width)
+        displayHeight += height/4
+        aggregateD = ((d.value *1.0)/totalLetters) * 2 * width
+      return "translate(" + (aggregateD - ((d.value *1.0)/totalLetters) * (width)) +  "," + displayHeight + ")"
+    circle = circleChart.selectAll(".circle")
+    .data(d3.entries(data))
+    .enter().append("g")
+    .attr("transform", (d,i) -> return translationCalculation(d,i) )
+    circle.append("circle")
+      .attr("r", (d) -> return ((d.value * 1.0)/totalLetters) * (width))
+    
+      
+    circle.append("text")
+      .style("fill","white")
+      .attr("dx", ".05em")
+      .attr("dy", ".2em")
+      .text((d) -> return d.key)
+    circle.append("svg:title")
+      .text((d)-> return d.value)
+
+
+  callback = (error,data) ->
+    if error
+      console.log("warning " + error)
+      return
+    buildBarGraph(data)
+    buildCuteCircles(data)
 
   d3.json("/welcome/data", (error, data) -> return callback(error,data) )

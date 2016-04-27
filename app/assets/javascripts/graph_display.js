@@ -9,6 +9,8 @@ $(document).ready(function() {
 	});
 	$('.letter-bar-toggle').click( function() {
 		$('.vertical-chart').toggle();
+		$('.svg-circles').toggle();
+		$('.description').toggle();
 	});
 
 });
