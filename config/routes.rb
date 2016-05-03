@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :dice_games
+
   resources :posts
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/data' => 'welcome#data'
   post 'welcome/show' => 'welcome#show'
+  post 'dice_game/index' => 'dice_games#index'
+  get 'dice_game/analytics' => 'dice_games#analytics'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
