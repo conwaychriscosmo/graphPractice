@@ -11,7 +11,6 @@ $ ->
   x = d3.scale.ordinal()
     .rangeRoundBands([0, innerWidth], .1)
   y = d3.scale.linear()
-      .domain([0, d3.max(data)])
       .range([innerHeight, margin.top])
   xAxis = d3.svg.axis()
   .scale(x)
