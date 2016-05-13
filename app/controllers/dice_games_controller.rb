@@ -10,6 +10,11 @@ class DiceGamesController < ApplicationController
   def analytics
   end
 
+  def data
+    @data = DiceGamesHelper.get_data
+    render json: @data
+  end
+
   # GET /dice_games/1
   # GET /dice_games/1.json
   def show

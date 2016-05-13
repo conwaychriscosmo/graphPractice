@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'welcome/show' => 'welcome#show'
   post 'dice_game/index' => 'dice_games#index'
   get 'dice_game/analytics' => 'dice_games#analytics'
+  get 'dice_games/data' => 'dice_games#data'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
